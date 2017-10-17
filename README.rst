@@ -1,5 +1,5 @@
 ##############
-pfdcm  v0.99.3
+pfmisc  v0.99.1
 ##############
 
 .. image:: https://badge.fury.io/py/pfdcm.svg
@@ -17,12 +17,12 @@ pfdcm  v0.99.3
 Overview
 ********
 
-This repository provides ``pfdcm`` -- a controlling service that speaks to a PACS and handles DICOM data management.
+This repository provides ``pfmisc`` -- miscellaneous services for the ``pf`` family.
 
-pfdcm
+pfmisc
 =====
 
-Most simply, ``pfdcm`` provides a REST-type interface to querying a PACS as well as managing DICOM data received from a PACS.
+Most simply, ``pfmisc`` provides debug and color modules.
 
 ************
 Installation
@@ -92,7 +92,7 @@ Now,
 
    apt update && \
    apt install -y libssl-dev libcurl4-openssl-dev librtmp-dev && \
-   pip install pfdcm
+   pip install pfmisc
    
 **If you do the above, remember to** ``commit`` **your changes to the docker image otherwise they'll be lost when you remove the dock instance!**
 
@@ -102,33 +102,4 @@ Now,
   
  where ``<container-ID>`` is the ID of the above container.
   
-
-Using the ``fnndsc/pfdcm`` dock
-===============================
-
-The easiest option however, is to just use the ``fnndsc/pfdcm`` dock.
-
-.. code-block:: bash
-
-    docker pull fnndsc/pfdcm
-    
-and then run
-
-.. code-block:: bash
-
-    docker run --name pfdcm -v /home:/Users --rm -ti fnndsc/pfdcm --forever --httpResponse
-
-*****
-Usage
-*****
-
-For usage of  ``pfdcm``, consult the relevant wiki pages.
-
-``pfdcm`` usage
-===============
-
-For ``pfdcm`` detailed information, see the `pfdcm wiki page <https://github.com/FNNDSC/pfdcm/wiki/pfdcm-overview>`_.
-
-
-
 
