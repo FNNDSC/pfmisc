@@ -3,7 +3,7 @@ import  datetime
 import  threading
 import  inspect
 import  logging
-
+import  socket
 import  pudb
 
 # pfmisc local dependencies
@@ -72,9 +72,11 @@ class debug(object):
             self.debug                  = Message(logTo = self.str_debugFile)
             self.debug._b_syslog        = False
             self.debug._b_flushNewLine  = True
+
         self._log                   = Message()
         self._log._b_syslog         = True
         self.__name                 = "pfmisc"
+        self.str_hostname           = socket.gethostname()
 
 
     def __call__(self, *args, **kwargs):
@@ -107,10 +109,14 @@ class debug(object):
             if not self.b_useDebug:
                 # First the syslog-ish stuff
                 write(Colors.CYAN,                                                  end="")
-                write('%s' % datetime.datetime.now() + "  | ",                      end="")
+                write('%s' % \
+                        datetime.datetime.now().replace(microsecond=0) + "  | ",    end="")
+                write(Colors.LIGHT_CYAN,                                            end="")
+                write('%15s | ' % self.str_hostname,                                end="")
                 write(Colors.LIGHT_BLUE,                                            end="")
-                write('%40s' % (str_callerFile + ':' +  
-                                self.__name__ + "." + str_callerMethod + '()') + ' | ',   end="")
+                write('%35s' % (str_callerFile + ':' +  
+                                self.__name__ + "." + str_callerMethod + '()') + ' | ',  
+                                                                                    end="")
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
                 if str_comms == 'status':   write(Colors.PURPLE,                    end="")
                 if str_comms == 'error':    write(Colors.RED,                       end="")
