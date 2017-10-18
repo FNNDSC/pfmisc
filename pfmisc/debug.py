@@ -7,12 +7,12 @@ import  logging
 import  pudb
 
 # pfmisc local dependencies
-# try:
-#     from    .message        import Message
-#     from    ._colors        import  Colors
-# except:
-from    message         import Message
-from    _colors         import  Colors
+try:
+    from    .message        import Message
+    from    ._colors        import  Colors
+except:
+    from    message         import Message
+    from    _colors         import  Colors
 
 logging.basicConfig(level=logging.DEBUG,
                     format='(%(threadName)-10s) %(message)s')
