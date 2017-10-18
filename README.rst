@@ -1,5 +1,5 @@
 ###############
-pfmisc  v0.99.5
+pfmisc  v0.99.6
 ###############
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -31,15 +31,17 @@ Usage
 Simply do a 
 
 .. code-block:: python
-import pfmisc
 
-class MyClass():
+    import pfmisc
 
-    def __init__(self, *args, **kwargs):
-        self.debug  = pfmisc.debug()
+    class MyClass():
 
-        self.debug('hello there!)
-        
+        def __init__(self, *args, **kwargs):
+            self.debug  = pfmisc.debug()
+
+            self.debug('hello there!')
+
+which will result in some decent debugging in stdout.
 
 ************
 Installation
@@ -118,5 +120,3 @@ Now,
   docker commit <container-ID> local/ubuntu-python3-pfdcm
   
  where ``<container-ID>`` is the ID of the above container.
-  
-
