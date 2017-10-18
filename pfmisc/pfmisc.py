@@ -6,10 +6,14 @@ import  json
 
 import  pudb
 
-from    _colors         import  Colors
-from    debug           import  debug
-from    C_snode         import *
-
+try:
+    from    ._colors        import  Colors
+    from    .debug          import  debug
+    from    .C_snode        import *
+except:
+    from    _colors         import  Colors
+    from    debug           import  debug
+    from    C_snode         import *
 
 class someOtherClass():
     """
