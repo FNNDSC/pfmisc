@@ -1,5 +1,5 @@
 ################
-pfmisc  v0.99.10
+pfmisc  v0.99.11
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
