@@ -1,15 +1,15 @@
 ###############
-pfmisc  v0.99.4
+pfmisc  v0.99.5
 ###############
 
-.. image:: https://badge.fury.io/py/pfdcm.svg
-    :target: https://badge.fury.io/py/pfdcm
+.. image:: https://badge.fury.io/py/pfmisc.svg
+    :target: https://badge.fury.io/py/pfmisc
 
 .. image:: https://travis-ci.org/FNNDSC/pfdcm.svg?branch=master
-    :target: https://travis-ci.org/FNNDSC/pfdcm
+    :target: https://travis-ci.org/FNNDSC/pfmisc
 
 .. image:: https://img.shields.io/badge/python-3.5%2B-blue.svg
-    :target: https://badge.fury.io/py/pfdcm
+    :target: https://badge.fury.io/py/pfmisc
 
 .. contents:: Table of Contents
 
@@ -23,6 +23,23 @@ pfmisc
 ======
 
 Most simply, ``pfmisc`` provides debug and color modules.
+
+*****
+Usage
+*****
+
+Simply do a 
+
+.. code-block:: python
+import pfmisc
+
+class MyClass():
+
+    def __init__(self, *args, **kwargs):
+        self.debug  = pfmisc.debug()
+
+        self.debug('hello there!)
+        
 
 ************
 Installation
