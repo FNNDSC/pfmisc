@@ -3,7 +3,6 @@
 import  sys
 import  os
 import  json
-
 import  pudb
 
 try:
@@ -26,8 +25,11 @@ class someOtherClass2():
 
         self.dp             = debug(verbosity=0, level=-1, within = "someOtherClass2")
 
-    def say(self):
-        self.dp.qprint("And this is another class!")
+    def say(self, msg):
+        print('\n* Now we are in a different class in this module...')
+        print('* Note the different class and method in the debug output.')
+        print('* calling: self.dp.qprint(msg):')
+        self.dp.qprint(msg)
 
 class pfmisc2():
     """
@@ -62,10 +64,13 @@ class pfmisc2():
         Simple run method
         """
 
+        print('* calling: self.dp.qprint("Why hello there, world!"):')
         self.dp.qprint("Why hello there, world!")
         other = someOtherClass2()
-        other.say()
+        other.say("And this is from a different class")
 
         for str_comms in ['status', 'error', 'tx', 'rx']: 
+            print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
+            print("comms = '%s')" % str_comms)
             self.dp.qprint("This string is tagged with '%s'" % str_comms, comms = str_comms)
 

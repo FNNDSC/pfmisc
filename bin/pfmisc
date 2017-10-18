@@ -91,5 +91,9 @@ print(str_desc)
 example         = pfmisc()
 example2        = pfmisc2()
 
+print("*********************** using classes from module file 'pfmisc.py' *****")
 example.demo()
+
+print("\n")
+print("*********************** using classes from module file 'pfmisc2.py' *****")
 example2.demo()
