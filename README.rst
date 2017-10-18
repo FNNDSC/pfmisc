@@ -1,5 +1,5 @@
 ################
-pfmisc  v0.99.11
+pfmisc  v0.99.12
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -39,7 +39,7 @@ Simply do a
         def __init__(self, *args, **kwargs):
             self.debug  = pfmisc.debug()
 
-            self.debug('hello there!')
+            self.debug.qprint('hello there!')
 
 which will result in some decent debugging in stdout.
 
