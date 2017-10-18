@@ -1,6 +1,6 @@
-##############
-pfmisc  v0.99.1
-##############
+###############
+pfmisc  v0.99.2
+###############
 
 .. image:: https://badge.fury.io/py/pfdcm.svg
     :target: https://badge.fury.io/py/pfdcm
