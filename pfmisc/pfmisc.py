@@ -57,7 +57,15 @@ class pfmisc():
         self.str_name       = self.str_desc
         self.str_version    = ''
 
-        self.dp             = debug(verbosity=0, level=-1, within='pfmisc')
+        self.dp             = debug(verbosity   = 0, 
+                                    level       = -1, 
+                                    within      = 'pfmisc')
+
+        self.dp2            = debug(verbosity   = 0, 
+                                    level       = -1, 
+                                    within      = 'pfmisc',
+                                    debugToFile = True, 
+                                    debugFile   = '/tmp/pfmisc.txt')
 
     def demo(self, *args, **kwargs):
         """
@@ -66,6 +74,11 @@ class pfmisc():
 
         print('* calling: self.dp.qprint("Why hello there, world!"):')
         self.dp.qprint("Why hello there, world!")
+
+        print('* calling: self.dp2.qprint("Why hello there, world! In a debugging file!"):')
+        self.dp2.qprint("Why hello there, world! In a debugging file!")
+        print('* Check on /tmp/pfmisc.txt')
+
         other = someOtherClass()
         other.say("And this is from a different class")
 
