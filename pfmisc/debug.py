@@ -50,9 +50,10 @@ class debug(object):
         Constructor
         """
 
-        self.verbosity  = 0
-        self.level      = 0
+        self.verbosity              = 0
+        self.level                  = 0
 
+        self.b_colorize             = True
         self.b_useDebug             = False
         self.str_debugDirFile       = '/tmp'
         self.__name__               = 'debug'
@@ -62,6 +63,7 @@ class debug(object):
             if k == 'debugToFile':  self.b_useDebug         = v
             if k == 'debugFile':    self.str_debugDirFile   = v
             if k == 'within':       self.__name__           = v
+            if k == 'colorize':     self.b_colorize         = v
 
         if self.b_useDebug:
             str_debugDir                = os.path.dirname(self.str_debugDirFile)
@@ -106,25 +108,30 @@ class debug(object):
         str_callerMethod    = inspect.stack()[1][3]
 
         if self.level <= self.verbosity:
-            if not self.b_useDebug:
-                # First the syslog-ish stuff
-                write(Colors.CYAN,                                                  end="")
-                write('%s' % \
-                        datetime.datetime.now().replace(microsecond=0) + "  | ",    end="")
-                write(Colors.LIGHT_CYAN,                                            end="")
-                write('%15s | ' % self.str_hostname,                                end="")
-                write(Colors.LIGHT_BLUE,                                            end="")
-                write('%35s' % (str_callerFile + ':' +  
-                                self.__name__ + "." + str_callerMethod + '()') + ' | ',  
-                                                                                    end="")
+            if self.b_colorize: write(Colors.CYAN,                                  end="")
+            write('%s' % datetime.datetime.now().replace(microsecond=0) + "  | ",   end="")
+            if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
+            write('%15s | ' % self.str_hostname,                                    end="")
+            if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
+            write('%35s' % (str_callerFile + ':' +  
+                            self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
+            if self.b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
                 if str_comms == 'status':   write(Colors.PURPLE,                    end="")
                 if str_comms == 'error':    write(Colors.RED,                       end="")
-                if str_comms == "tx":       write(Colors.YELLOW + "\n---->")
-                if str_comms == "rx":       write(Colors.GREEN  + "\n<----")
+                if str_comms == "tx":       write(Colors.YELLOW,                    end="")
+                if str_comms == "rx":       write(Colors.GREEN,                     end="")
+            if str_comms == "tx":           write("\n---->")
+            if str_comms == "rx":           write("\n<----")
+
             write(msg)
-            if not self.b_useDebug:
-                if str_comms == "tx":       write(Colors.YELLOW + "---->")
-                if str_comms == "rx":       write(Colors.GREEN  + "<----")
-                write(Colors.NO_COLOUR, end="")
+
+            if not self.b_colorize:
+                if str_comms == "tx":       write(Colors.YELLOW,                    end="")
+                if str_comms == "rx":       write(Colors.GREEN,                     end="")
+                
+            if str_comms == "tx":           write("---->")
+            if str_comms == "rx":           write("<----")
+
+            if self.b_colorize:         write(Colors.NO_COLOUR, end="")
 
