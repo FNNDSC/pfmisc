@@ -17,7 +17,7 @@ pfmisc  v1.0.1
 Overview
 ********
 
-This repository provides ``pfmisc`` -- miscellaneous services for the ``pf`` family.
+This repository provides ``pfmisc`` -- miscellaneous services for the ``pf`` family. This is the bleeding edge branch.
 
 pfmisc
 ======
