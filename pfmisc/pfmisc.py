@@ -79,6 +79,10 @@ class pfmisc():
         self.dp2.qprint("Why hello there, world! In a debugging file!")
         print('* Check on /tmp/pfmisc.txt')
 
+        print('* calling: self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+"):')
+        self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+")   
+        print('* Check on /tmp/pfmisc-teefile.txt')
+
         other = someOtherClass()
         other.say("And this is from a different class")
 
