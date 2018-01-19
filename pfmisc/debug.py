@@ -86,14 +86,19 @@ class debug(object):
 
     def qprint(self, msg, **kwargs):
 
+        str_teeFile = ''
+        str_teeMode = 'w+'
+
         str_comms   = "normal"
         self.level  = 0
         self.msg    = ""
 
         for k, v in kwargs.items():
-            if k == 'level':    self.level  = v
-            if k == 'msg':      self.msg    = v
-            if k == 'comms':    str_comms   = v
+            if k == 'level'     :   self.level  = v
+            if k == 'msg'       :   self.msg    = v
+            if k == 'comms'     :   str_comms   = v
+            if k == 'teeFile'   :   str_teeFile = v
+            if k == 'teeMode'   :   str_teeMode = v  
 
         if msg != None:    
             self.msg = msg
@@ -102,6 +107,9 @@ class debug(object):
             write   = self.debug
         else:
             write   = print
+
+        if len(str_teeFile):
+            tf      = open(str_teeFile, str_teeMode)
 
         stack = inspect.stack()
         str_callerFile      = os.path.split(stack[1][1])[1]
@@ -125,6 +133,10 @@ class debug(object):
             if str_comms == "rx":           write("\n<----")
 
             write(msg)
+
+            if len(str_teeFile):
+                tf.write(msg)
+                tf.close()
 
             if not self.b_colorize:
                 if str_comms == "tx":       write(Colors.YELLOW,                    end="")
