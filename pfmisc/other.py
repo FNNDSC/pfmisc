@@ -59,7 +59,7 @@ def arr_normalize(arr, *args, **kwargs):
     f_range = f_max - f_min
     arr_shifted = arr + -f_min
     arr_norm = arr_shifted / f_range
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if key == 'scale': arr_norm *= value
     return arr_norm
 
@@ -200,7 +200,7 @@ def com_find2D(ar_grid, **kwargs):
     b_reorder   = True
     b_oneOffset = True
 
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if key == 'ordering' and value == 'rc':         b_reorder       = False
         if key == 'ordering' and value == 'xy':         b_reorder       = True
         if key == 'indexing' and value == 'zero':       b_oneOffset     = False
@@ -244,13 +244,13 @@ def error_exit(astr_func,
                         astr_action,
                         astr_error,
                         aexitCode):
-        print "FATAL ERROR"
-        print "\tSorry, some error seems to have occurred in <%s::%s>" \
-                % ('systemMisc', astr_func)
-        print "\tWhile %s" % astr_action
-        print "\t%s" % astr_error
-        print ""
-        print "Returning to system with error code %d" % aexitCode
+        print("FATAL ERROR")
+        print("\tSorry, some error seems to have occurred in <%s::%s>" \
+                % ('systemMisc', astr_func))
+        print("\tWhile %s" % astr_action)
+        print("\t%s" % astr_error)
+        print("")
+        print("Returning to system with error code %d" % aexitCode)
         sys.exit(aexitCode)
 
 def printf(format, *args):
@@ -342,7 +342,7 @@ def toc(*args, **kwargs):
     """
     global Gtic_start
     f_elapsedTime = time.time() - Gtic_start
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if key == 'sysprint':   return value % f_elapsedTime
         if key == 'default':    return "Elapsed time = %f seconds." % f_elapsedTime
     return f_elapsedTime
@@ -417,7 +417,7 @@ def neighbours_findFast(a_dimension, a_depth, *args, **kwargs):
     b_wrapGridEdges = False # If True, wrap around edges of grid
     b_gridSize = False # Helper flag for tracking wrap
 
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if key == 'includeOrigin':      b_includeOrigin = value
         if key == 'wrapGridEdges':      b_wrapGridEdges = value
         if key == 'gridSize':
@@ -610,14 +610,14 @@ def neighbours_find(a_dimension, a_depth, *args, **kwargs):
     if (a_depth < 1):
         l_D = []
         l_I = {}
-        return l_I, l_D;
+        return l_I, l_D
 
     # Process *kwargs and behavioural arguments
     b_returnUnion = False # If True, return A = I union D
     b_wrapGridEdges = False # If True, wrap around edges of grid
     b_gridSize = False # Helper flag for tracking wrap
 
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if key == 'returnUnion':        b_returnUnion = value
         if key == 'wrapGridEdges':      b_wrapGridEdges = value
         if key == 'gridSize':
@@ -809,7 +809,7 @@ def base10toN(num, n):
         new_num_string = remainder_string + new_num_string
         new_num_arr = r_[remainder, new_num_arr]
         current = current / n
-    print new_num_arr
+    print(new_num_arr)
     return new_num_string
 
 def list_i2str(ilist):
@@ -869,7 +869,7 @@ def str_blockIndent(astr_buf, a_tabs=1, a_tabLength=4, **kwargs):
     Trailing '\n' are *not* replaced.
     """
     str_tabBoundary = " "
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
       if key == 'tabBoundary':  str_tabBoundary = value
     b_trailN = False
     length = len(astr_buf)
@@ -892,36 +892,36 @@ def str_blockIndent(astr_buf, a_tabs=1, a_tabLength=4, **kwargs):
 
 def valuePair_fprint(astr_name, afvalue=None, leftCol=40, rightCol=40):
         if afvalue != None:
-            print '%*s:%*f' % (leftCol, astr_name, rightCol, afvalue)
+            print('%*s:%*f' % (leftCol, astr_name, rightCol, afvalue))
         else:
             printf('%*f', leftCol, astr_name)
 def valuePair_sprint(astr_name, astr_value, leftCol=40, rightCol=40):
         if len(astr_value):
-            print '%*s:%*s' % (leftCol, astr_name, rightCol, astr_value)
+            print('%*s:%*s' % (leftCol, astr_name, rightCol, astr_value))
         else:
             printf('%*s', leftCol, astr_name)
 def valuePair_dprint(astr_name, avalue=None, leftCol=40, rightCol=40):
         if avalue != None:
-            print '%*s:%*d' % (leftCol, astr_name, rightCol, avalue)
+            print('%*s:%*d' % (leftCol, astr_name, rightCol, avalue))
         else:
             printf('%*d', leftCol, astr_name)
 
 def html(astr_string, astr_tag="p"):
-        print """
+        print ("""
         <%s>
         %s
         </%s>
-        """ % (astr_tag, astr_string, astr_tag)
+        """ % (astr_tag, astr_string, astr_tag))
 
 def PRE(astr_string):
-        print """
+        print("""
         <pre>
         %s
         </pre>
-        """ % astr_string
+        """ % astr_string)
 
 def P(astr_string):
-        print "<p>%s</p>" % astr_string
+        print("<p>%s</p>" % astr_string)
 
 def system_eval(str_command, b_echoCommand=0):
         if b_echoCommand: printf('<p>str_command = %s</p>', str_command)
@@ -977,7 +977,7 @@ def subprocess_eval(str_command, b_echoCommand=0):
     try:
         str_forRet = str_command + " 2>/dev/null >/dev/null"
         retcode = call(str_forRet, shell=True)
-    except OSError, e:
+    except:
         b_OK = False
     return str_stdout, str_stderr, retcode
 
@@ -1001,7 +1001,7 @@ def shell(command, **kwargs):
     b_stdoutflush       = False
     b_stderrflush       = False
     b_waitForChild      = True
-    for key, val in kwargs.iteritems():
+    for key, val in kwargs.items():
         if key == 'stdoutflush':        b_stdoutflush   = val
         if key == 'stderrflush':        b_stderrflush   = val
         if key == 'waitForChild':       b_waitForChild  = val
@@ -1044,11 +1044,18 @@ def shellne(command):
     data = child.read()
     err = child.close()
     if err:
-        raise RuntimeError, '%s failed w/ exit code %d' % (command, err)
+        raise RuntimeError('%s failed w/ exit code %d' % (command, err))
     return data
 ## end of http://code.activestate.com/recipes/52296/ }}}
 
-def mkdir(newdir, mode=0775):
+def touch(fname, times=None):
+    '''
+    Emulates the UNIX touch command.
+    '''
+    with io.open(fname, 'a'):
+        os.utime(fname, times)
+
+def mkdir(newdir):
     """
     works the way a good mkdir should :)
         - already exists, silently complete
@@ -1069,13 +1076,6 @@ def mkdir(newdir, mode=0775):
             os.mkdir(newdir)
             #print "chmod %d %s" % (mode, newdir)
             #os.chmod(newdir, mode)
-
-def touch(fname, times=None):
-    '''
-    Emulates the UNIX touch command.
-    '''
-    with file(fname, 'a'):
-        os.utime(fname, times)
 
 # From stackoverflow, answered Sep 25 '08 at 21:43 by S.Lott
 # http://stackoverflow.com/questions/136168/get-last-n-lines-of-a-file-with-python-similar-to-tail
@@ -1119,7 +1119,7 @@ def file_writeOnce(astr_fileName, astr_val, **kwargs):
     '''
 
     _str_mode = 'w'
-    for key, val in kwargs.iteritems():
+    for key, val in kwargs.items():
         if key == 'mode':   _str_mode   = val
 
     FILE = open(astr_fileName, _str_mode)
