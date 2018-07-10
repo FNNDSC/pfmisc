@@ -8,11 +8,13 @@ import  pudb
 try:
     from    ._colors        import  Colors
     from    .debug          import  debug
-    from    .C_snode        import *
+    from    .C_snode        import  *
+    from    .error          import  *
 except:
     from    _colors         import  Colors
     from    debug           import  debug
-    from    C_snode         import *
+    from    C_snode         import  *
+    from    error           import  *
 
 class someOtherClass2():
     """
@@ -35,6 +37,19 @@ class pfmisc2():
     """
     Example of how to use the local misc dependencies
     """
+
+    # An error declaration block
+    _dictErr = {
+        'someError1'   : {
+            'action'        : 'trying to parse image file specified, ',
+            'error'         : 'wrong format found. Must be [<index>:]<filename>',
+            'exitCode'      : 1},
+        'someError2': {
+            'action'        : 'trying to read input <tagFileList>, ',
+            'error'         : 'could not access/read file -- does it exist? Do you have permission?',
+            'exitCode'      : 20
+            }
+        }
 
     def col2_print(self, str_left, str_right):
         print(Colors.WHITE +
@@ -85,4 +100,11 @@ class pfmisc2():
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
             print("comms = '%s')" % str_comms)
             self.dp.qprint("This string is tagged with '%s'" % str_comms, comms = str_comms)
+
+        print("Followed by an error...")
+        fatal(
+            self, 'someError2',
+            header  = 'This is an unrecoverable error!',
+            drawBox = True
+        )
 
