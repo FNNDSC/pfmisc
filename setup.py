@@ -12,7 +12,7 @@ def readme():
 
 setup(
       name             =   'pfmisc',
-      version          =   '1.3.8',
+      version          =   '1.3.10',
       description      =   'Misc utilities for FNNDSC python repos',
       long_description =   readme(),
       author           =   'Rudolph Pienaar',
