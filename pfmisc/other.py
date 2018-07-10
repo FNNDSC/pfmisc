@@ -33,7 +33,7 @@ from            subprocess      import *
 from            numpy           import *
 import          time
 import          itertools
-import          popen2, fcntl, select
+# import          popen2, fcntl, select
 
 # For internal timing:
 Gtic_start = 0.0
