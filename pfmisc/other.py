@@ -29,7 +29,7 @@ import          string
 import          re
 import          types
 from            subprocess      import *
-from            cStringIO       import StringIO
+# from            cStringIO       import StringIO
 from            numpy           import *
 import          time
 import          itertools
