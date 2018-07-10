@@ -28,7 +28,6 @@ import          time
 import          string
 import          re
 import          types
-import          commands
 from            subprocess      import *
 from            cStringIO       import StringIO
 from            numpy           import *
