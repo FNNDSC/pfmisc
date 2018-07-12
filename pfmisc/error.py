@@ -116,7 +116,7 @@ def report(     callingClass,
 
     b_syslog    = log.syslog()
     log.syslog(False)
-    if ab_exitToOs: log( Colors.RED +    ":: FATAL ERROR :: " + Colors.NO_COLOUR )
+    if ab_exitToOS: log( Colors.RED +    ":: FATAL ERROR :: " + Colors.NO_COLOUR )
     else:           log( Colors.YELLOW + "::   WARNING   :: " + Colors.NO_COLOUR )
     if len(astr_header): log( Colors.BROWN + astr_header + Colors.NO_COLOUR )
     log( "\n" )
