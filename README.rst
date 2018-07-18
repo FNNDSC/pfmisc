@@ -22,7 +22,7 @@ This repository provides ``pfmisc`` -- miscellaneous services for the ``pf`` fam
 pfmisc
 ======
 
-Most simply, ``pfmisc`` provides debug and color modules.
+Most simply, ``pfmisc`` provides debug, text-console colorization, and error modules.
 
 *****
 Usage
