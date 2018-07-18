@@ -57,6 +57,8 @@ class debug(object):
         self.b_useDebug             = False
         self.str_debugDirFile       = '/tmp'
         self.__name__               = 'debug'
+        self.hostnamecol            = 15
+        self.methodcol              = 45
         for k, v in kwargs.items():
             if k == 'verbosity':    self.verbosity          = v
             if k == 'level':        self.level              = v
@@ -64,6 +66,8 @@ class debug(object):
             if k == 'debugFile':    self.str_debugDirFile   = v
             if k == 'within':       self.__name__           = v
             if k == 'colorize':     self.b_colorize         = v
+            if k == 'hostnamecol':  self.hostnamecol        = int(v)
+            if k == 'methodcol':    self.methodcol          = int(v)
 
         if self.b_useDebug:
             str_debugDir                = os.path.dirname(self.str_debugDirFile)
@@ -119,9 +123,9 @@ class debug(object):
             if self.b_colorize: write(Colors.CYAN,                                  end="")
             write('%s' % datetime.datetime.now().replace(microsecond=0) + "  | ",   end="")
             if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
-            write('%15s | ' % self.str_hostname,                                    end="")
+            write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
             if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
-            write('%35s' % (str_callerFile + ':' +  
+            write('%*s' % ( self.methodcol, str_callerFile + ':' +  
                             self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
             if self.b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
