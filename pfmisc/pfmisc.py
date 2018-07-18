@@ -74,7 +74,9 @@ class pfmisc():
 
         self.dp             = debug(verbosity   = 0, 
                                     level       = -1, 
-                                    within      = 'pfmisc')
+                                    within      = 'pfmisc',
+                                    hostnamecol = 7,
+                                    methodcol   = 10)
 
         self.dp2            = debug(verbosity   = 0, 
                                     level       = -1, 
