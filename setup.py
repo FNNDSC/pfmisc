@@ -19,7 +19,7 @@ setup(
       author_email     =   'rudolph.pienaar@gmail.com',
       url              =   'https://github.com/FNNDSC/pfmisc',
       packages         =   ['pfmisc'],
-      install_requires =   ['pudb', 'pfmisc'],
+      install_requires =   ['pudb', 'pfmisc', 'numpy'],
       test_suite       =   'nose.collector',
       tests_require    =   ['nose'],
       scripts          =   ['bin/pfmisc'],
