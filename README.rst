@@ -1,5 +1,5 @@
 ################
-pfmisc  v1.3.18
+pfmisc  v1.3.24
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -57,7 +57,8 @@ Installation is relatively straightforward, and best done with ``pip``:
 Notes
 *****
 
-Please examine the ``pfmisc.py`` code for hints on how to use/call the method:
+Please examine the ``pfmisc.py`` code for hints on how to use/call the various 
+debugging and error modules:
 
 .. code-block:: html
 
