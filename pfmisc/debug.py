@@ -50,8 +50,8 @@ class debug(object):
         Constructor
         """
 
-        self.verbosity              = 0
-        self.level                  = 0
+        self.verbosity              = 1
+        self.level                  = 1
 
         self.b_colorize             = True
         self.b_useDebug             = False
@@ -94,7 +94,7 @@ class debug(object):
         str_teeMode = 'w+'
 
         str_comms   = "normal"
-        self.level  = 0
+        self.level  = 1
         self.msg    = ""
         stackDepth  = 1
 
