@@ -96,6 +96,7 @@ class debug(object):
         str_comms   = "normal"
         self.level  = 0
         self.msg    = ""
+        stackDepth  = 1
 
         for k, v in kwargs.items():
             if k == 'level'     :   self.level  = v
@@ -103,6 +104,7 @@ class debug(object):
             if k == 'comms'     :   str_comms   = v
             if k == 'teeFile'   :   str_teeFile = v
             if k == 'teeMode'   :   str_teeMode = v  
+            if k == 'stackDepth':   stackDepth  = v
 
         if msg != None:    
             self.msg = msg
@@ -117,7 +119,7 @@ class debug(object):
 
         stack = inspect.stack()
         str_callerFile      = os.path.split(stack[1][1])[1]
-        str_callerMethod    = inspect.stack()[1][3]
+        str_callerMethod    = inspect.stack()[stackDepth][3]
 
         if self.level <= self.verbosity:
             if self.b_colorize: write(Colors.CYAN,                                  end="")
