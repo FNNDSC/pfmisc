@@ -1,5 +1,5 @@
 ################
-pfmisc  v1.3.24
+pfmisc  v1.3.26
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -18,9 +18,6 @@ Overview
 ********
 
 This repository provides ``pfmisc`` -- miscellaneous services for the ``pf`` family.
-
-pfmisc
-======
 
 Most simply, ``pfmisc`` provides debug, text-console colorization, and error modules.
 
