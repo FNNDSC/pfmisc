@@ -95,8 +95,14 @@ class pfmisc2():
         other.say("And this is from a different class")
 
         print('* now with no syslog...')
-        print('* calling: self.dp2.qprint("Hello there, world w/o syslog!", syslog = False):')
+        print('* calling: self.dp.qprint("Hello there, world w/o syslog!", syslog = False):')
         self.dp.qprint("Hello there, world w/o syslog!", syslog = False)
+
+        print('\n* end and no end...')
+        print('* calling: self.dp.qprint("This is the end... ", end=''):')
+        print('* calling: self.dp.qprint("My only friend the end", syslog = False):')
+        self.dp.qprint("This is the end... ", end='')
+        self.dp.qprint("My only friend the end", syslog = False)
 
         for str_comms in ['status', 'error', 'tx', 'rx']: 
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
