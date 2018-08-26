@@ -72,14 +72,12 @@ class pfmisc():
         self.str_name       = self.str_desc
         self.str_version    = ''
 
-        self.dp             = debug(verbosity   = 0, 
-                                    level       = -1, 
+        self.dp             = debug(verbosity   = 1, 
                                     within      = 'pfmisc',
                                     hostnamecol = 7,
                                     methodcol   = 10)
 
-        self.dp2            = debug(verbosity   = 0, 
-                                    level       = -1, 
+        self.dp2            = debug(verbosity   = 1, 
                                     within      = 'pfmisc',
                                     debugToFile = True, 
                                     debugFile   = '/tmp/pfmisc.txt')

@@ -72,12 +72,10 @@ class pfmisc2():
         self.str_name       = self.str_desc
         self.str_version    = ''
 
-        self.dp             = debug(verbosity   = 0, 
-                                    level       = -1, 
+        self.dp             = debug(verbosity   = 1, 
                                     within      = 'pfmisc2')
 
-        self.dp2            = debug(verbosity   = 0, 
-                                    level       = -1, 
+        self.dp2            = debug(verbosity   = 1, 
                                     within      = 'pfmisc2',
                                     debugToFile = True, 
                                     debugFile   = '/tmp/pfmisc2.txt')
@@ -95,6 +93,10 @@ class pfmisc2():
 
         other = someOtherClass2()
         other.say("And this is from a different class")
+
+        print('* now with no syslog...')
+        print('* calling: self.dp2.qprint("Hello there, world w/o syslog!", syslog = False):')
+        self.dp.qprint("Hello there, world w/o syslog!", syslog = False)
 
         for str_comms in ['status', 'error', 'tx', 'rx']: 
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
