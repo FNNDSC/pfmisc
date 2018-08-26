@@ -59,6 +59,8 @@ class debug(object):
         self.__name__               = 'debug'
         self.hostnamecol            = 15
         self.methodcol              = 45
+        self.b_syslog               = True
+
         for k, v in kwargs.items():
             if k == 'verbosity':    self.verbosity          = v
             if k == 'level':        self.level              = v
@@ -68,6 +70,7 @@ class debug(object):
             if k == 'colorize':     self.b_colorize         = v
             if k == 'hostnamecol':  self.hostnamecol        = int(v)
             if k == 'methodcol':    self.methodcol          = int(v)
+            if k == 'syslog':       self.b_syslog           = bool(v)
 
         if self.b_useDebug:
             str_debugDir                = os.path.dirname(self.str_debugDirFile)
@@ -98,6 +101,8 @@ class debug(object):
         self.msg    = ""
         stackDepth  = 1
 
+        b_syslog    = self.b_syslog
+
         for k, v in kwargs.items():
             if k == 'level'     :   self.level  = v
             if k == 'msg'       :   self.msg    = v
@@ -105,6 +110,7 @@ class debug(object):
             if k == 'teeFile'   :   str_teeFile = v
             if k == 'teeMode'   :   str_teeMode = v  
             if k == 'stackDepth':   stackDepth  = v
+            if k == 'syslog'    :   b_syslog    = bool(v)
 
         if msg != None:    
             self.msg = msg
@@ -122,13 +128,14 @@ class debug(object):
         str_callerMethod    = inspect.stack()[stackDepth][3]
 
         if self.level <= self.verbosity:
-            if self.b_colorize: write(Colors.CYAN,                                  end="")
-            write('%s' % datetime.datetime.now().replace(microsecond=0) + "  | ",   end="")
-            if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
-            write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
-            if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
-            write('%*s' % ( self.methodcol, str_callerFile + ':' +  
-                            self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
+            if b_syslog:
+                if self.b_colorize: write(Colors.CYAN,                                  end="")
+                write('%s' % datetime.datetime.now().replace(microsecond=0) + "  | ",   end="")
+                if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
+                write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
+                if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
+                write('%*s' % ( self.methodcol, str_callerFile + ':' +  
+                                self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
             if self.b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
                 if str_comms == 'status':   write(Colors.PURPLE,                    end="")
