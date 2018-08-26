@@ -102,6 +102,7 @@ class debug(object):
         stackDepth  = 1
 
         b_syslog    = self.b_syslog
+        b_end       = False
 
         for k, v in kwargs.items():
             if k == 'level'     :   self.level  = v
@@ -111,6 +112,9 @@ class debug(object):
             if k == 'teeMode'   :   str_teeMode = v  
             if k == 'stackDepth':   stackDepth  = v
             if k == 'syslog'    :   b_syslog    = bool(v)
+            if k == 'end'       :   
+                b_end       = True
+                end         = v
 
         if msg != None:    
             self.msg = msg
@@ -145,7 +149,10 @@ class debug(object):
             if str_comms == "tx":           write("\n---->")
             if str_comms == "rx":           write("\n<----")
 
-            write(msg)
+            if b_end:
+                write(msg, end = end )
+            else: 
+                write(msg)
 
             if len(str_teeFile):
                 tf.write(msg)
