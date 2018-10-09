@@ -104,6 +104,8 @@ class debug(object):
         b_syslog    = self.b_syslog
         b_end       = False
 
+        methodcol   = self.methodcol
+
         for k, v in kwargs.items():
             if k == 'level'     :   self.level  = v
             if k == 'msg'       :   self.msg    = v
@@ -111,6 +113,7 @@ class debug(object):
             if k == 'teeFile'   :   str_teeFile = v
             if k == 'teeMode'   :   str_teeMode = v  
             if k == 'stackDepth':   stackDepth  = v
+            if k == 'methodcol' :   methodcol   = int(v)
             if k == 'syslog'    :   b_syslog    = bool(v)
             if k == 'end'       :   
                 b_end       = True
@@ -138,7 +141,7 @@ class debug(object):
                 if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
                 write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
                 if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
-                write('%*s' % ( self.methodcol, str_callerFile + ':' +  
+                write('%*s' % ( methodcol, str_callerFile + ':' +  
                                 self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
             if self.b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
