@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python
 
 import  sys
 import  os
@@ -388,11 +388,6 @@ class Message:
             
         
 if __name__ == "__main__":
-    '''
-    __main__
-    '''
-
-    
     log1 = Message()
     log2 = Message()
     
