@@ -9,12 +9,10 @@ from    io          import  IOBase
 
 # pman local dependencies
 
-try: 
-    from    .dgmsocket      import  C_dgmsocket
-    from    ._colors        import  Colors
-except:
-    from    dgmsocket       import  C_dgmsocket
-    from    _colors         import  Colors
+
+from    .dgmsocket      import  C_dgmsocket
+from    ._colors        import  Colors
+
 
 class Message:
     '''

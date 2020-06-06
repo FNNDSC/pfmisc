@@ -5,16 +5,11 @@ import  os
 import  json
 import  pudb
 
-try:
-    from    ._colors        import  Colors
-    from    .debug          import  debug
-    from    .C_snode        import  *
-    from    .error          import  *
-except:
-    from    _colors         import  Colors
-    from    debug           import  debug
-    from    C_snode         import  *
-    from    error           import  *
+from    ._colors        import  Colors
+from    .debug          import  debug
+from    .C_snode        import  *
+from    .error          import  *
+
 
 class someOtherClass2():
     """
