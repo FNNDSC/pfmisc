@@ -33,8 +33,7 @@ import sys
 from string import *
 
 # doesn't seem right?
-from cStringIO import StringIO
-
+from io import StringIO
 from cgi import *
 
 class C_stringCore:
