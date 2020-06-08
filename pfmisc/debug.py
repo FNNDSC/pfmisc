@@ -1,15 +1,15 @@
-import  os
-import  datetime
-import  threading
-import  inspect
-import  logging
-import  socket
-import  pudb
+import os
+import datetime
+import threading
+import inspect
+import logging
+import socket
+import pudb
 
 # pfmisc local dependencies
 
-from    .message        import Message
-from    ._colors        import Colors
+from pfmisc.message import Message
+from pfmisc._colors import Colors
 
 
 logging.basicConfig(level=logging.DEBUG,

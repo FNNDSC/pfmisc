@@ -26,8 +26,8 @@ key has a dictionary of 'action', 'error', 'exitCode':
 import inspect
 import sys
 
-from ._colors import Colors
-from .message import Message
+from pfmisc._colors import Colors
+from pfmisc.message import Message
 
 
 class slog(object):

@@ -1,12 +1,12 @@
-import  sys
-import  os
-import  json
-import  pudb
+import sys
+import os
+import json
+import pudb
 
-from    ._colors        import  Colors
-from    .debug          import  debug
-from    .C_snode        import  *
-from    .error          import  *
+from pfmisc._colors import Colors
+from pfmisc.debug import debug
+from pfmisc.C_snode import *
+from pfmisc.error import *
 
 
 class someOtherClass2():
