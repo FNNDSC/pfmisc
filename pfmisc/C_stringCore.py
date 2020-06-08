@@ -28,16 +28,13 @@
 """
 
 # System modules
-import  os
-import  sys
-from    string          import  *
+import os
+import sys
+from string import *
 
 # doesn't seem right?
-try:
-	from    cStringIO       import  StringIO
-except ImportError:
-	from 	io 		import 	StringIO
-from    cgi             import  *
+from io import StringIO
+from cgi import *
 
 class C_stringCore:
         """

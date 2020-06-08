@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python
 
 """
     NAME
@@ -25,22 +25,19 @@
 """
 
 # System modules
-import  os
-import  sys
-import  re
-from    string                      import  *
-import  pickle
-import  json
-import  collections
-import  pudb
+import os
+import sys
+import re
+from string import *
+import pickle
+import json
+import collections
+import pudb
 
 # pman local dependencies
-try:
-    from    .C_stringCore           import  *
-    from    .message                import  Message
-except:
-    from    C_stringCore            import  *
-    from    message                 import  Message
+from pfmisc.C_stringCore import *
+from pfmisc.message import Message
+
 
 class C_meta:
         """

@@ -1,20 +1,18 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python
 
-import  sys
-import  os
-import  time
-import  inspect
-import  types
-from    io          import  IOBase
+import sys
+import os
+import time
+import inspect
+import types
+from io import IOBase
 
 # pman local dependencies
 
-try: 
-    from    .dgmsocket      import  C_dgmsocket
-    from    ._colors        import  Colors
-except:
-    from    dgmsocket       import  C_dgmsocket
-    from    _colors         import  Colors
+
+from pfmisc.dgmsocket import C_dgmsocket
+from pfmisc._colors import Colors
+
 
 class Message:
     '''
@@ -390,11 +388,6 @@ class Message:
             
         
 if __name__ == "__main__":
-    '''
-    __main__
-    '''
-
-    
     log1 = Message()
     log2 = Message()
     

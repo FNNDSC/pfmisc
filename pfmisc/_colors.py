@@ -3,7 +3,6 @@
 #
 # (c) 2012 FNNDSC, Boston Children's Hospital
 #
-import types
 
 class Colors( object ):
     '''
@@ -48,7 +47,7 @@ class Colors( object ):
 
     NO_COLOUR="\033[0m"
 
-  
+
     @staticmethod
     def strip( text ):
         '''

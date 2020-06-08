@@ -1,20 +1,13 @@
-#!/usr/bin/env python3.5
+import sys
+import os
+import json
+import pudb
 
-import  sys
-import  os
-import  json
-import  pudb
+from pfmisc._colors import Colors
+from pfmisc.debug import debug
+from pfmisc.C_snode import *
+from pfmisc.error import *
 
-try:
-    from    ._colors        import  Colors
-    from    .debug          import  debug
-    from    .C_snode        import  *
-    from    .error          import  *
-except:
-    from    _colors         import  Colors
-    from    debug           import  debug
-    from    C_snode         import  *
-    from    error           import  *
 
 class someOtherClass2():
     """

@@ -12,29 +12,14 @@ import sys, os
 import  socket
 from    argparse                import RawTextHelpFormatter
 from    argparse                import ArgumentParser
-from    distutils.sysconfig     import get_python_lib
 
 import  pudb
-sys.path.insert(1, os.path.join(os.path.dirname(__file__), '../pfmisc'))
-try:
-    from        pfmisc          import  pfmisc
-except:
-    sys.path.insert(1, os.path.join(get_python_lib(True, True), 'site-packages'))
-    sys.path.insert(1, os.path.join(get_python_lib(True, True), 'site-packages/pfmisc'))
-    import      pfmisc
 
-try:
-    from        pfmisc2         import pfmisc2
-except:
-    from        pfmisc.pfmisc2  import pfmisc2
+from pfmisc import Colors, pfmisc, pfmisc2, local_ip_address
 
-try:
-    from        _colors         import Colors
-except:
-    from        pfmisc._colors  import Colors
 
-str_defIP = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
-str_version = "1.3.32"
+str_defIP = local_ip_address()
+str_version = "1.4.0"
 str_desc = Colors.CYAN + """
 
 

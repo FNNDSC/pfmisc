@@ -16,22 +16,18 @@ key has a dictionary of 'action', 'error', 'exitCode':
     callingClass._dictErr = {
         'someKey':      {
             'action':   'some action being performed,',
-            'error':    'the error that occured',
+            'error':    'the error that occurred',
             'exitCode': <int>
         }
     }
 
 '''
 
-import  inspect
-import  sys
+import inspect
+import sys
 
-try: 
-    from    ._colors    import Colors
-    from    .message    import Message
-except:
-    from    _colors     import Colors
-    from    message     import Message
+from pfmisc._colors import Colors
+from pfmisc.message import Message
 
 
 class slog(object):
@@ -165,5 +161,4 @@ def warn( callingClass, astr_key, **kwargs ):
     kwargs['exitToOS']  = False
     report( callingClass, astr_key, **kwargs )
 
-    
     
