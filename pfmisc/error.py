@@ -56,25 +56,28 @@ class slog(object):
         l_padding = 2
         r_padding = 4
 
-        msg_list = self.str_payload.split('\n')
-        msg_list = [ x.replace('\t', '       ') for x in msg_list]
-        l_c0    = [x.count('\x1b[0;')*7 for x in msg_list]
-        l_c1    = [x.count('\x1b[1;')*7 for x in msg_list]
-        l_nc    = [x.count('\x1b[0m')*4 for x in msg_list]
-        l_offset = [x + y + z for x, y, z in zip(l_c0, l_c1, l_nc)]
+        msg_list    = self.str_payload.split('\n')
+        msg_list    = [ x.replace('\t', '       ') for x in msg_list]
+        l_c0        = [x.count('\x1b[0;')*7 for x in msg_list]
+        l_c1        = [x.count('\x1b[1;')*7 for x in msg_list]
+        l_nc        = [x.count('\x1b[0m')*4 for x in msg_list]
+        l_offset    = [x + y + z for x, y, z in zip(l_c0, l_c1, l_nc)]
         msg_listNoEsc   = [(len(x) - w) for x, w in zip(msg_list, l_offset)]
-        width   = max(msg_listNoEsc)
-        h_len   = width + l_padding + r_padding
-        top_bottom = ''.join(['+'] + ['-' * h_len] + ['+']) + '\n'
-        result = top_bottom
+        width       = max(msg_listNoEsc)
+        h_len       = width + l_padding + r_padding
+        top_bottom  = ''.join(['+'] + ['-' * h_len] + ['+']) + '\n'
+        top         = ''.join(['┌'] + ['─' * h_len] + ['┐']) + '\n'
+        bottom      = ''.join(['└'] + ['─' * h_len] + ['┘']) + '\n'
+
+        result      = top
 
         for m, l in zip(msg_list, msg_listNoEsc):
             spaces   = h_len - l
             l_spaces = ' ' * l_padding
             r_spaces = ' ' * (spaces - l_padding)
-            result += '|' + l_spaces + m + r_spaces + '|\n'
+            result += '│' + l_spaces + m + r_spaces + '│\n'
 
-        result += top_bottom
+        result += bottom
         return result
 
     def __repr__(self):
