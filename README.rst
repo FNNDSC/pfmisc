@@ -1,5 +1,5 @@
 ################
-pfmisc  v1.4.2
+pfmisc  v2.0.0
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -25,7 +25,7 @@ Most simply, ``pfmisc`` provides debug, text-console colorization, and error mod
 Usage
 *****
 
-Simply do a 
+Simply do a
 
 .. code-block:: python
 
@@ -54,8 +54,7 @@ Installation is relatively straightforward, and best done with ``pip``:
 Notes
 *****
 
-Please examine the ``pfmisc.py`` code for hints on how to use/call the various 
-debugging and error modules:
+Please examine the ``pfmisc.py`` code for hints on how to use/call the various debugging and error modules:
 
 .. code-block:: html
 
