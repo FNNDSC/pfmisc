@@ -123,7 +123,7 @@ class debug(object):
         if self.b_useDebug:
             write   = self.debug
         else:
-            write   = lambda *m: print(*m, flush=True)
+            write   = lambda *m, **k: print(*m, **k, flush=True)
 
         if len(str_teeFile):
             tf      = open(str_teeFile, str_teeMode)
