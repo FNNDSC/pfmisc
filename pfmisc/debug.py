@@ -109,21 +109,21 @@ class debug(object):
             if k == 'msg'       :   self.msg    = v
             if k == 'comms'     :   str_comms   = v
             if k == 'teeFile'   :   str_teeFile = v
-            if k == 'teeMode'   :   str_teeMode = v  
+            if k == 'teeMode'   :   str_teeMode = v
             if k == 'stackDepth':   stackDepth  = v
             if k == 'methodcol' :   methodcol   = int(v)
             if k == 'syslog'    :   b_syslog    = bool(v)
-            if k == 'end'       :   
+            if k == 'end'       :
                 b_end       = True
                 end         = v
 
-        if msg != None:    
+        if msg != None:
             self.msg = msg
 
         if self.b_useDebug:
             write   = self.debug
         else:
-            write   = print
+            write   = lambda *m: print(*m, flush=True)
 
         if len(str_teeFile):
             tf      = open(str_teeFile, str_teeMode)
@@ -139,7 +139,7 @@ class debug(object):
                 if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
                 write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
                 if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
-                write('%*s' % ( methodcol, str_callerFile + ':' +  
+                write('%*s' % ( methodcol, str_callerFile + ':' +
                                 self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
             if self.b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,                     end="")
@@ -152,7 +152,7 @@ class debug(object):
 
             if b_end:
                 write(msg, end = end )
-            else: 
+            else:
                 write(msg)
 
             if len(str_teeFile):
@@ -162,7 +162,7 @@ class debug(object):
             if not self.b_colorize:
                 if str_comms == "tx":       write(Colors.YELLOW,                    end="")
                 if str_comms == "rx":       write(Colors.GREEN,                     end="")
-                
+
             if str_comms == "tx":           write("---->")
             if str_comms == "rx":           write("<----")
 
