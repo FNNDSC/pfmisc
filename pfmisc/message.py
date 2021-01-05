@@ -22,13 +22,13 @@ class Message:
 
     Messages can be tagged with optional debug level descriptors, allowing
     easy filtering by setting an object's internal verbosity value.
-    
+
     Messages can also be prepended with syslog style prefixes, as well as
     "group" type string tags for easy post-filtering.
 
-    Furthermore, text messages can be left/right justified in columns of given 
+    Furthermore, text messages can be left/right justified in columns of given
     width by setting in-call flags.
-    
+
     '''
 
     def verbosity(self, *args):
@@ -44,13 +44,13 @@ class Message:
 
         verbosity():    returns the current level
         verbosity(<N>): sets the verbosity to <N>
-        
+
         '''
         if len(args):
             self._verbosity             = args[0]
         else:
             return self._verbosity
-    
+
 
     def tagstring(self, *args):
         '''
@@ -79,7 +79,7 @@ class Message:
         get/set the tag flag.
 
         The tag flag toggles the most basic prepending to each log
-        output. The idea with the tagging text is to provide a 
+        output. The idea with the tagging text is to provide a
         simple mechanism by which a log output can be filtered/parsed
         for specific outputs.
 
@@ -123,7 +123,7 @@ class Message:
             self._str_syslog = args[0]
         else:
             return self._str_syslog
-            
+
 
     def tee(self, *args):
         '''
@@ -132,7 +132,7 @@ class Message:
         The tee flag toggles any output that is directed to non-console
         destinations to also appear on the console. Tee'd console output
         is still verbosity filtered
-        
+
         tee():                  returns the current syslog flag
         tee(True|False):        sets the flag to True|False
 
@@ -149,7 +149,7 @@ class Message:
         that <str1> is a host to send datagram comms to over port <str2>.
 
         Returns True or False.
-        
+
         '''
         t_socketInfo = astr_destination.partition(':')
         if len(t_socketInfo[1]):
@@ -159,7 +159,7 @@ class Message:
         else:
             self._b_isSocket    = False
         return self._b_isSocket
-        
+
 
     def to(self, *args):
         '''
@@ -172,13 +172,13 @@ class Message:
             system devices:             sys.stdout, sys.stderr
             special names:              'stdout'
             file handles:               open('/tmp/test.log')
-            
+
         '''
         if len(args):
             self._logFile = args[0]
             if self._logHandle and self._logHandle != sys.stdout:
                 self._logHandle.close()
-            
+
             # if type(self._logFile) is types.FileType:
             if isinstance(self._logFile, IOBase):
                 self._logHandle = self._logFile
@@ -193,8 +193,8 @@ class Message:
             self._sys_stdout      = self._logHandle
         else:
             return self._logFile
-            
-            
+
+
     def vprintf(self, alevel, format, *args):
         '''
         A verbosity-aware printf.
@@ -205,7 +205,7 @@ class Message:
 
     def canPrintVerbose(self, alevel):
         return int(self._verbosity) and int(alevel) <= int(self._verbosity)
-        
+
 
     @staticmethod
     def syslog_generate(str_processName, str_pid):
@@ -217,12 +217,12 @@ class Message:
       where 'pretoria' is the hostname, 'message.py' is the current process
       name and 26873 is the current process id.
       '''
-      localtime = time.asctime( time.localtime(time.time()) )      
+      localtime = time.asctime( time.localtime(time.time()) )
       hostname = os.uname()[1]
       syslog = '%s %s %s[%s]' % (localtime, hostname, str_processName, str_pid)
       return syslog
-      
-        
+
+
     def __call__(self, *args, **kwargs):
         '''
         Output the payload.
@@ -245,8 +245,8 @@ class Message:
             # default
             log.to(sys.stdout)
 
-            # prints message to stdout            
-            log('hello, world\n')              
+            # prints message to stdout
+            log('hello, world\n')
 
             log.verbosity(1)
             # With verbosity set to 1, messages tagged with
@@ -272,9 +272,9 @@ class Message:
            messages are only output to the console if the internal verbosity
            level is less than the tagged level of the message.
         2. If the 'tee' flag is set, and if the output destination is anything
-           other than sys.stdout, the message will always be echoed to the 
+           other than sys.stdout, the message will always be echoed to the
            console (irrespective of any 'debug' tags)
-           
+
 
         '''
         b_syslog        = self._b_syslog
@@ -323,9 +323,9 @@ class Message:
                     sys.stdout.write(str_msg)
             else: sys.stdout.write(str_msg)
             sys.stdout.flush()
-        self.syslog(b_syslog)    
+        self.syslog(b_syslog)
 
-        
+
     def append(self, str_msg):
         '''
         Append <str_msg> to the internal payload.
@@ -338,8 +338,8 @@ class Message:
         Clear the internal payload, i.e. set to empty string.
         '''
         self._str_payload       = ''
-            
-                
+
+
     def __init__(self, **kwargs):
         '''
         Constructor.
@@ -355,7 +355,7 @@ class Message:
 
         self._verbosity         = 0
 
-        # On construction, set the "internal" stdout and stderr to the 
+        # On construction, set the "internal" stdout and stderr to the
         # (current) system stdout and stderr file handles
         self._sys_stdout        = sys.stdout
         self._sys_stderr        = sys.stderr
@@ -385,12 +385,12 @@ class Message:
             if key == "syslogPrepend":  self._b_syslog          = int(value)
             if key == "logTo":          self.to(value)
             if key == 'tee':            self._b_tee             = value
-            
-        
+
+
 if __name__ == "__main__":
     log1 = Message()
     log2 = Message()
-    
+
     log1.syslog(True)
     log1(Colors.RED + Colors.WHITE_BCKGRND + 'hello world!\n' + Colors.NO_COLOUR)
 
@@ -415,16 +415,16 @@ if __name__ == "__main__":
     log2.to('/tmp/log2.log')
     log2.tee(True)
     # A verbosity level of log2.verbosity(1) and a
-    # log2.to(sys.stdout) will not output any of the 
-    # following since the debug level for each message 
+    # log2.to(sys.stdout) will not output any of the
+    # following since the debug level for each message
     # is set to '5'. The verbosity should be at least
     # log2.verbosity(5) for output to appear on the
     # console.
-    # 
+    #
     # If log2.tee(True) and log2.to('/tmp/log2.log')
     # then all messages will be displayed regardless
     # of the internal verbosity level.
-    log2.verbosity(1)   
+    log2.verbosity(1)
     log2('starting process 1...', lw=90, debug=5)
     log2('[ ok ]\n', rw=20, syslog=False, debug=5)
     log2('parsing process 1 outputs...', lw=90, debug=5)
@@ -432,7 +432,7 @@ if __name__ == "__main__":
     log2('preparing final report...', lw=90, debug=5)
     log2('[ ok ]\n', rw=20, syslog=False, debug=5)
 
-    
+
     log1.to('/tmp/test.log')
     log1('and now to /tmp/test.log\n')
 
@@ -441,7 +441,7 @@ if __name__ == "__main__":
     log2.tagstring('MARK-->')
     log2('this text is tagged\n')
     log2('and so is this text\n')
-    
+
     log1.clear()
     log1.append('this is message ')
     log1.append('that is constructed over several ')
@@ -451,4 +451,4 @@ if __name__ == "__main__":
 
     log2.tag(False)
     log2('goodbye!\n')
-    
+

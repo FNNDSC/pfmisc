@@ -65,12 +65,12 @@ class pfmisc2():
         self.str_name       = self.str_desc
         self.str_version    = ''
 
-        self.dp             = debug(verbosity   = 1, 
+        self.dp             = debug(verbosity   = 1,
                                     within      = 'pfmisc2')
 
-        self.dp2            = debug(verbosity   = 1, 
+        self.dp2            = debug(verbosity   = 1,
                                     within      = 'pfmisc2',
-                                    debugToFile = True, 
+                                    debugToFile = True,
                                     debugFile   = '/tmp/pfmisc2.txt')
     def demo(self, *args, **kwargs):
         """
@@ -97,7 +97,7 @@ class pfmisc2():
         self.dp.qprint("This is the end... ", end='')
         self.dp.qprint("My only friend the end", syslog = False)
 
-        for str_comms in ['status', 'error', 'tx', 'rx']: 
+        for str_comms in ['status', 'error', 'tx', 'rx']:
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
             print("comms = '%s')" % str_comms)
             self.dp.qprint("This string is tagged with '%s'" % str_comms, comms = str_comms)

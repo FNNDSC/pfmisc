@@ -30,7 +30,7 @@ import          re
 import          types
 from            subprocess      import *
 # from            cStringIO       import StringIO
-from            numpy           import *
+#from            numpy           import *
 import          time
 import          itertools
 # import          popen2, fcntl, select

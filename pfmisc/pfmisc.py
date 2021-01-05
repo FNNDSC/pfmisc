@@ -6,9 +6,9 @@ import  json
 import  pudb
 
 from pfmisc._colors import Colors
-from pfmisc.debug import debug
+from pfmisc.debug   import debug
 from pfmisc.C_snode import *
-from pfmisc.error import *
+from pfmisc.error   import *
 
 class someOtherClass():
     """
@@ -66,14 +66,14 @@ class pfmisc():
         self.str_name       = self.str_desc
         self.str_version    = ''
 
-        self.dp             = debug(verbosity   = 1, 
+        self.dp             = debug(verbosity   = 1,
                                     within      = 'pfmisc',
                                     hostnamecol = 7,
                                     methodcol   = 10)
 
-        self.dp2            = debug(verbosity   = 1, 
+        self.dp2            = debug(verbosity   = 1,
                                     within      = 'pfmisc',
-                                    debugToFile = True, 
+                                    debugToFile = True,
                                     debugFile   = '/tmp/pfmisc.txt')
 
     def demo(self, *args, **kwargs):
@@ -89,13 +89,13 @@ class pfmisc():
         print('* Check on /tmp/pfmisc.txt')
 
         print('* calling: self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+"):')
-        self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+")   
+        self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+")
         print('* Check on /tmp/pfmisc-teefile.txt')
 
         other = someOtherClass()
         other.say("And this is from a different class")
 
-        for str_comms in ['status', 'error', 'tx', 'rx']: 
+        for str_comms in ['status', 'error', 'tx', 'rx']:
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
             print("comms = '%s')" % str_comms)
             self.dp.qprint("This string is tagged with '%s'" % str_comms, comms = str_comms)
