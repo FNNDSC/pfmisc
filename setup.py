@@ -12,14 +12,14 @@ def readme():
 
 setup(
       name             =   'pfmisc',
-      version          =   '2.0.2',
+      version          =   '2.2.2',
       description      =   'Misc utilities for FNNDSC python repos',
       long_description =   readme(),
       author           =   'Rudolph Pienaar',
       author_email     =   'rudolph.pienaar@gmail.com',
       url              =   'https://github.com/FNNDSC/pfmisc',
       packages         =   ['pfmisc'],
-      install_requires =   ['pudb', 'numpy'],
+      install_requires =   ['pudb'],
       test_suite       =   'nose.collector',
       tests_require    =   ['nose'],
       scripts          =   ['bin/pfmisc'],
