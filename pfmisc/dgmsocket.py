@@ -26,15 +26,15 @@ class C_dgmsocket :
         # Member variables
         #
         # 	- Core variables
-        mstr_obj	= 'C_dgmsocket' # name of object class
-        mstr_name	= 'void'        # name of object variable
-        m_id		= -1            # id of agent
-        m_iter		= 0             # current iteration in an
+        mstr_obj	= 'C_dgmsocket'     # name of object class
+        mstr_name	= 'void'            # name of object variable
+        m_id		= -1                # id of agent
+        m_iter		= 0                 # current iteration in an
                                         #  	arbitrary processing
                                         #	scheme
-        m_verbosity	= 0		# debug related value for
+        m_verbosity	= 0		            # debug related value for
                                         #	object
-        m_warnings	= 0             # show warnings
+        m_warnings	= 0                 # show warnings
                                         #	(and warnings level)
 
         #
