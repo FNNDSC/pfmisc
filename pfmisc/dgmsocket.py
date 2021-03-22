@@ -40,7 +40,7 @@ class C_dgmsocket :
         #
         #	- Class variables
         m_dgmsocket	    = None
-        mstr_remoteHost	    = 'localhost'
+        mstr_remoteHost = 'localhost'
         m_port		    = 1701
 
         #
