@@ -547,8 +547,25 @@ class C_stree:
             self.sCore.write('%s' % self.snode_root)
             return self.sCore.strget()
 
-        def __iter__(self):
-            yield(dict(self.snode_root))
+        def __iter__(self, **kwargs):
+            """
+            Yield a dictionary iteration starting
+            either from the root of the tree, or
+            a kwargs starting point.
+            """
+            str_dir     :   str     = '/'
+            str_cwd     :   str     = ""
+            snode_here  :   C_snode
+            for k, v in kwargs.items():
+                if k == 'node': str_dir     = v
+            if str_dir == '/':
+                yield(dict(self.snode_root))
+            else:
+                str_cwd     = self.pwd()
+                if self.cd(str_dir)['status']:
+                    snode_here  = self.snode_current
+                    self.cd(str_cwd)
+                    yield(dict(snode_here))
 
         def root(self):
             """
