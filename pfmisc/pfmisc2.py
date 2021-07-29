@@ -2,11 +2,12 @@ import sys
 import os
 import json
 import pudb
+sys.path.insert(1, os.path.join(os.path.dirname(__file__), '..'))
 
-from pfmisc._colors import Colors
-from pfmisc.debug import debug
-from pfmisc.C_snode import *
-from pfmisc.error import *
+from    pfmisc._colors  import Colors
+from    pfmisc.debug    import debug
+from    pfmisc.C_snode  import *
+from    pfmisc.error    import *
 
 
 class someOtherClass2():
