@@ -7,20 +7,20 @@
 #                         dev@babyMRI.org
 #
 
-import sys, os
+import  sys, os
+sys.path.insert(1, os.path.join(os.path.dirname(__file__), '..'))
 
 import  socket
 from    argparse                import RawTextHelpFormatter
 from    argparse                import ArgumentParser
 
 import  pudb
-
-from pfmisc import Colors, pfmisc, pfmisc2, local_ip_address
+from    pfmisc import Colors, pfmisc, pfmisc2, local_ip_address
 
 
 str_defIP = local_ip_address()
-str_version = "2.2.4"
-str_desc = Colors.CYAN + """
+str_version = "2.2.8"
+str_desc = Colors.CYAN + r"""
 
 
         __           _          
@@ -33,9 +33,9 @@ str_desc = Colors.CYAN + """
 |_|                             
 
 
-                            Path-File-misc
+                              Path-File-misc
 
-           Miscellaneous utilities for the pf* family.
+                Miscellaneous utilities for the pf* family.
 
                               -- version """ + \
              Colors.YELLOW + str_version + Colors.CYAN + """ --
