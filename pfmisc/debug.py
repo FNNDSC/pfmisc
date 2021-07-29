@@ -54,7 +54,7 @@ class debug(object):
         self.b_colorize             = True
         self.b_useDebug             = False
         self.str_debugDirFile       = '/tmp'
-        self.__name__               = 'debug'
+        self.within                 = 'debug'
         self.hostnamecol            = 15
         self.methodcol              = 45
         self.b_syslog               = True
@@ -64,7 +64,7 @@ class debug(object):
             if k == 'level':        self.level              = v
             if k == 'debugToFile':  self.b_useDebug         = v
             if k == 'debugFile':    self.str_debugDirFile   = v
-            if k == 'within':       self.__name__           = v
+            if k == 'within':       self.within             = v
             if k == 'colorize':     self.b_colorize         = v
             if k == 'hostnamecol':  self.hostnamecol        = int(v)
             if k == 'methodcol':    self.methodcol          = int(v)
@@ -101,8 +101,9 @@ class debug(object):
 
         b_syslog    = self.b_syslog
         b_end       = False
-
+        b_colorize  = self.b_colorize
         methodcol   = self.methodcol
+        end         = ""
 
         for k, v in kwargs.items():
             if k == 'level'     :   self.level  = v
@@ -113,6 +114,7 @@ class debug(object):
             if k == 'stackDepth':   stackDepth  = v
             if k == 'methodcol' :   methodcol   = int(v)
             if k == 'syslog'    :   b_syslog    = bool(v)
+            if k == 'colorize'  :   b_colorize  = bool(v)
             if k == 'end'       :
                 b_end       = True
                 end         = v
@@ -134,19 +136,25 @@ class debug(object):
 
         if self.level <= self.verbosity:
             if b_syslog:
-                if self.b_colorize: write(Colors.CYAN,                                  end="")
-                write('%s' % datetime.datetime.now().replace(microsecond=0) + "  | ",   end="")
-                if self.b_colorize: write(Colors.LIGHT_CYAN,                            end="")
-                write('%*s | ' % (self.hostnamecol, self.str_hostname),                 end="")
-                if self.b_colorize: write(Colors.LIGHT_BLUE,                            end="")
-                write('%*s' % ( methodcol, str_callerFile + ':' +
-                                self.__name__ + "." + str_callerMethod + '()') + ' | ', end="")
-            if self.b_colorize:
-                if str_comms == 'normal':   write(Colors.WHITE,                     end="")
-                if str_comms == 'status':   write(Colors.PURPLE,                    end="")
-                if str_comms == 'error':    write(Colors.RED,                       end="")
-                if str_comms == "tx":       write(Colors.YELLOW,                    end="")
-                if str_comms == "rx":       write(Colors.GREEN,                     end="")
+                if b_colorize: write(Colors.CYAN,                   end="")
+                write('%s' %
+                    datetime.datetime.now().replace(microsecond=0)
+                    + "  | ",                                       end="")
+                if b_colorize: write(Colors.LIGHT_CYAN,             end="")
+                write('%*s | ' % (
+                        self.hostnamecol, self.str_hostname
+                    ),                                              end="")
+                if b_colorize: write(Colors.LIGHT_BLUE,             end="")
+                write('%*s' % (
+                        methodcol, str_callerFile + ':'                 +
+                        self.within + "." + str_callerMethod + '()')    +
+                        ' | ',                                      end="")
+            if b_colorize:
+                if str_comms == 'normal':   write(Colors.WHITE,     end="")
+                if str_comms == 'status':   write(Colors.PURPLE,    end="")
+                if str_comms == 'error':    write(Colors.RED,       end="")
+                if str_comms == "tx":       write(Colors.YELLOW,    end="")
+                if str_comms == "rx":       write(Colors.GREEN,     end="")
             if str_comms == "tx":           write("\n---->")
             if str_comms == "rx":           write("\n<----")
 
@@ -160,11 +168,11 @@ class debug(object):
                 tf.close()
 
             if not self.b_colorize:
-                if str_comms == "tx":       write(Colors.YELLOW,                    end="")
-                if str_comms == "rx":       write(Colors.GREEN,                     end="")
+                if str_comms == "tx":       write(Colors.YELLOW,    end="")
+                if str_comms == "rx":       write(Colors.GREEN,     end="")
 
             if str_comms == "tx":           write("---->")
             if str_comms == "rx":           write("<----")
 
-            if self.b_colorize:         write(Colors.NO_COLOUR, end="")
+            if b_colorize:         write(Colors.NO_COLOUR, end="")
 
