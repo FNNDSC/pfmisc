@@ -4,11 +4,12 @@ import  sys
 import  os
 import  json
 import  pudb
+sys.path.insert(1, os.path.join(os.path.dirname(__file__), '..'))
 
-from pfmisc._colors import Colors
-from pfmisc.debug   import debug
-from pfmisc.C_snode import *
-from pfmisc.error   import *
+from    pfmisc._colors import Colors
+from    pfmisc.debug   import debug
+from    pfmisc.C_snode import *
+from    pfmisc.error   import *
 
 class someOtherClass():
     """
@@ -19,13 +20,18 @@ class someOtherClass():
         """
         """
 
-        self.dp             = debug(verbosity=0, level=-1, within = "someOtherClass")
+        self.dp             = debug(
+                                verbosity   = 0,
+                                level       = -1,
+                                within      = "someOtherClass"
+                            )
+        self.log            = self.dp.qprint
 
     def say(self, msg):
         print('\n* Now we are in a different class in this module...')
         print('* Note the different class and method in the debug output.')
         print('* calling: self.dp.qprint(msg):')
-        self.dp.qprint(msg)
+        self.log(msg, level = -1)
 
 class pfmisc():
     """
@@ -70,27 +76,35 @@ class pfmisc():
                                     within      = 'pfmisc',
                                     hostnamecol = 7,
                                     methodcol   = 10)
+        self.log            = self.dp.qprint
 
         self.dp2            = debug(verbosity   = 1,
                                     within      = 'pfmisc',
                                     debugToFile = True,
                                     debugFile   = '/tmp/pfmisc.txt')
+        self.log2           = self.dp2.qprint
 
     def demo(self, *args, **kwargs):
         """
         Simple run method
         """
+        # pudb.set_trace()
+        print('\n* calling: self.dp.qprint("Why hello there, world!"):')
+        self.log("Why hello there, world!")
 
-        print('* calling: self.dp.qprint("Why hello there, world!"):')
-        self.dp.qprint("Why hello there, world!")
+        print('\n* calling: self.dp.qprint("Why hello there, world!", colorize = False):')
+        self.log("Why hello there, world!", colorize = False)
 
-        print('* calling: self.dp2.qprint("Why hello there, world! In a debugging file!"):')
-        self.dp2.qprint("Why hello there, world! In a debugging file!")
-        print('* Check on /tmp/pfmisc.txt')
+        print('\n* calling: self.dp.qprint("Why hello there, world!", colorize = False, syslog = False):')
+        self.log("Why hello there, world!", colorize = False, syslog = False)
 
-        print('* calling: self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+"):')
-        self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+")
-        print('* Check on /tmp/pfmisc-teefile.txt')
+        print('\n* calling: self.dp2.qprint("Why hello there, world! In a debugging file!"):')
+        self.log2("Why hello there, world! In a debugging file!")
+        print('\n* Check on /tmp/pfmisc.txt')
+
+        print('\n* calling: self.dp.qprint("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+"):')
+        self.log("Why hello there, world! With teeFile!", teeFile="/tmp/pfmisc-teefile.txt", teeMode = "w+")
+        print('\n* Check on /tmp/pfmisc-teefile.txt')
 
         other = someOtherClass()
         other.say("And this is from a different class")
@@ -98,7 +112,7 @@ class pfmisc():
         for str_comms in ['status', 'error', 'tx', 'rx']:
             print('\n* calling: self.dp.qprint("This string is tagged with %s" % str_comms, ', end='')
             print("comms = '%s')" % str_comms)
-            self.dp.qprint("This string is tagged with '%s'" % str_comms, comms = str_comms)
+            self.log("This string is tagged with '%s'" % str_comms, comms = str_comms)
 
         print("And here is warning...")
         warn(
