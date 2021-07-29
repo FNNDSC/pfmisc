@@ -1,5 +1,5 @@
 ################
-pfmisc  v2.2.4
+pfmisc  v2.2.8
 ################
 
 .. image:: https://badge.fury.io/py/pfmisc.svg
@@ -38,7 +38,14 @@ Simply do a
 
             self.debug.qprint('hello there!')
 
-which will result in some decent debugging in stdout.
+which will result in some decent debugging in ``stdout``. Sometimes, it is useful to create a shortcut
+
+.. code-block:: python
+
+    self.debug  = pfmisc.debug()
+    self.log    = self.debug.qprint
+
+
 
 ************
 Installation
