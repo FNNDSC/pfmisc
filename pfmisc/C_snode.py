@@ -508,11 +508,18 @@ class C_stree:
             items = []
             for k, v in d.items():
                 new_key = parent_key + sep + k if parent_key else k
-                if isinstance(v, collections.MutableMapping):
-                    if v == {}: v = {'contents': None}
-                    items.extend(C_stree.flatten(v, new_key, sep=sep).items())
-                else:
-                    items.append((sep + new_key, v))
+                try:
+                    if isinstance(v, collections.MutableMapping):
+                        if v == {}: v = {'contents': None}
+                        items.extend(C_stree.flatten(v, new_key, sep=sep).items())
+                    else:
+                        items.append((sep + new_key, v))
+                except:
+                    if isinstance(v, collections.abc.MutableMapping):
+                        if v == {}: v = {'contents': None}
+                        items.extend(C_stree.flatten(v, new_key, sep=sep).items())
+                    else:
+                        items.append((sep + new_key, v))
             return dict(items)
 
         def initFromDict(self, adict, **kwargs):
