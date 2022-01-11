@@ -16,10 +16,10 @@ from    argparse                import ArgumentParser
 
 import  pudb
 from    pfmisc import Colors, pfmisc, pfmisc2, local_ip_address
-
+from    pfmisc import C_snode
 
 str_defIP = local_ip_address()
-str_version = "2.2.8"
+str_version = "2.2.10"
 str_desc = Colors.CYAN + r"""
 
 
@@ -46,6 +46,31 @@ str_desc = Colors.CYAN + r"""
 
 """ + Colors.NO_COLOUR
 
+def tree_build():
+    aTree   = C_snode.C_stree()
+    aTree.cd('/')
+    aTree.mkcd('a')
+    aTree.mknode(['b', 'c'])
+    aTree.cd('b')
+    aTree.touch('file1', 10)
+    aTree.touch('file2', "Rudolph Pienaar")
+    aTree.touch('file3', ['this', 'is', 'a', 'list'])
+    aTree.touch('file4', ('this', 'is', 'a', 'tuple'))
+    aTree.touch('file5', {'name': 'rudolph', 'address': '505 Washington'})
+
+    aTree.mknode(['d', 'e'])
+    aTree.cd('d')
+    aTree.mknode(['h', 'i'])
+    aTree.cd('/a/b/e')
+    aTree.mknode(['j', 'k'])
+    aTree.cd('/a/c')
+    aTree.mknode(['f', 'g'])
+    aTree.cd('f')
+    aTree.mknode(['l', 'm'])
+    aTree.cd('/a/c/g')
+    aTree.mknode(['n', 'o'])
+    return aTree
+
 parser  = ArgumentParser(description = str_desc, formatter_class = RawTextHelpFormatter)
 
 parser.add_argument(
@@ -69,9 +94,22 @@ if args.b_version:
     print("Version: %s" % str_version)
     sys.exit(1)
 
-# pudb.set_trace()
-
 print(str_desc)
+
+T = tree_build()
+print("T = %s" % T)
+
+d_t = {
+    "root" : {
+        "dir1" : {
+            "one":  "First",
+            "two":  "Second"
+        }
+    }
+}
+dT              = C_snode.C_stree()
+dT.initFromDict(d_t)
+print("dT = %s" % dT)
 
 example         = pfmisc()
 example2        = pfmisc2()
@@ -82,3 +120,4 @@ example.demo()
 print("\n")
 print("*********************** using classes from module file 'pfmisc2.py' *****")
 example2.demo()
+
