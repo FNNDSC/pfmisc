@@ -882,7 +882,7 @@ class C_stree:
             self.cd(str_here)
             return b_OK
 
-        def rm(self, name):
+        def rm(self, name:str) -> bool:
             """
             Remove a data analog called 'name'.
 
@@ -898,18 +898,24 @@ class C_stree:
             This deletes either directories or files.
 
             """
-            b_OK        = False
-            str_here    = self.cwd()
-            l_path = name.split('/')
+            b_OK:bool           = False
+            str_here:str        = self.cwd()
+            l_path:list         = name.split('/')
             if len(l_path) > 1:
                 self.cd('/'.join(l_path[0:-1]))
-            name = l_path[-1]
-            if name in self.snode_current.d_data:
-                del self.snode_current.d_data[name]
-                b_OK    = True
-            if name in self.snode_current.d_nodes:
-                del self.snode_current.d_nodes[name]
-                b_OK    = True
+            node:str            = l_path[-1]
+            if node in self.snode_current.d_data:
+                del self.snode_current.d_data[node]
+                b_OK        = True
+            if node in self.snode_current.d_nodes:
+                del self.snode_current.d_nodes[node]
+                l_path[0]   = '/'
+                try:
+                    if self.l_allPaths.index(l_path):
+                        self.l_allPaths.remove(l_path)
+                except:
+                    pass
+                b_OK        = True
             self.cd(str_here)
             return b_OK
 
