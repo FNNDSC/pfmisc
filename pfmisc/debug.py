@@ -139,16 +139,16 @@ class debug(object):
                 if b_colorize: write(Colors.CYAN,                   end="")
                 write('%s' %
                     datetime.datetime.now().replace(microsecond=0)
-                    + "  | ",                                       end="")
+                    + "  │ ",                                       end="")
                 if b_colorize: write(Colors.LIGHT_CYAN,             end="")
-                write('%*s | ' % (
+                write('%*s │ ' % (
                         self.hostnamecol, self.str_hostname
                     ),                                              end="")
                 if b_colorize: write(Colors.LIGHT_BLUE,             end="")
                 write('%*s' % (
                         methodcol, str_callerFile + ':'                 +
                         self.within + "." + str_callerMethod + '()')    +
-                        ' | ',                                      end="")
+                        ' │ ',                                      end="")
             if b_colorize:
                 if str_comms == 'normal':   write(Colors.WHITE,     end="")
                 if str_comms == 'status':   write(Colors.PURPLE,    end="")
